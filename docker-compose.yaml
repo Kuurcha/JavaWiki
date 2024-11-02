@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  service_discovery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+
+  auth_service:
+    build:
+      context: ./login
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - service_discovery
+
+  audit_service:
+    build:
+      context: ./userChanges
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - service_discovery
+
+  apigateway:
+    build:
+      context: ./ApiGateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service_discovery
+      - auth_service
+      - audit_service
