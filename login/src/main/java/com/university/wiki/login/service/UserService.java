@@ -1,5 +1,6 @@
 package com.university.wiki.login.service;
 
+import com.university.wiki.login.exceptions.DuplicateException;
 import com.university.wiki.login.repository.UserRepository;
 import com.university.wiki.login.table.User;
 import com.university.wiki.login.table.info.Role;
@@ -32,12 +33,11 @@ public class UserService {
      */
     public User create(User user) {
         if (repository.existsByUsername(user.getUsername())) {
-            // Заменить на свои исключения
-            throw new RuntimeException("Пользователь с таким именем уже существует");
+            throw new DuplicateException("Пользователь с таким именем уже существует");
         }
 
         if (repository.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("Пользователь с таким email уже существует");
+            throw new DuplicateException("Пользователь с таким email уже существует");
         }
 
         return save(user);
