@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +25,7 @@ public class AuthenticationService {
      * @param request данные пользователя
      * @return токен
      */
+    @Transactional
     public AuthResponseDTO signUp(SingupRequestDTO request) {
 
         var user = User.builder()
@@ -32,10 +34,11 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.ROLE_USER)
                 .build();
-
         userService.create(user);
 
         var jwt = jwtService.generateToken(user);
+
+
         return new AuthResponseDTO(jwt);
     }
 
