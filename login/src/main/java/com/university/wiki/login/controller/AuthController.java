@@ -28,7 +28,7 @@ public class AuthController {
         return ResponseEntity.ok("Test successful!");
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     String home() {
         return "Hello World!";
     }

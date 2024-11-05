@@ -1,5 +1,7 @@
 package com.university.wiki.login.config;
 
+import com.university.wiki.login.filter.JwtAuthenticationFilter;
+import com.university.wiki.login.service.JwtService;
 import com.university.wiki.login.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -31,6 +35,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     private final UserService userService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -57,12 +62,15 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
                 .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/hello").authenticated()
                         .requestMatchers("/error").permitAll()
                         .requestMatchers("/sign-up", "/sign-in","/swagger-ui/**", "/v3/api-docs/**", "swagger-ui/auth-controller/*", "/test").permitAll()
-                        .anyRequest().authenticated()
+
                 )
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(withDefaults());
         return http.build();
     }
+
 
 }
