@@ -18,10 +18,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the jar file from the build stage
-COPY --from=build /app/target/apigateway-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/userChanges-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port that the application will run on
-EXPOSE 8080
+EXPOSE 8081
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
