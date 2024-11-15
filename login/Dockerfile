@@ -4,12 +4,15 @@ FROM maven:3.8.3-openjdk-17 AS build
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the pom.xml and the src directory into the container
-COPY pom.xml .
+# Copy only the pom.xml file and download dependencies (cached in Docker layer)
+COPY pom.xml ./
+RUN mvn dependency:go-offline -B
+
+# Copy the rest of the application source code
 COPY src ./src
 
-# Package the application (using Maven)
-RUN mvn clean package -DskipTests
+# Package the application (without "clean" to speed up build times for dev)
+RUN mvn package -DskipTests
 
 # Use the official OpenJDK image for running the application
 FROM openjdk:17-jdk-slim
@@ -22,6 +25,6 @@ COPY --from=build /app/target/login-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
-
+EXPOSE 5005
 # Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005", "-jar", "app.jar"]

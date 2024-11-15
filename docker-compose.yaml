@@ -25,6 +25,7 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-discovery:8083/eureka
     ports:
       - "8080:8080"
+      - "5005:5005"
     depends_on:
       - service-discovery
   audit-service:
