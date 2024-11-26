@@ -4,6 +4,7 @@ import com.university.wiki.login.DTO.AuthResponseDTO;
 import com.university.wiki.login.DTO.SingupRequestDTO;
 import com.university.wiki.login.exceptions.DuplicateException;
 import com.university.wiki.login.service.AuthenticationService;
+import com.university.wiki.login.service.JwtService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -20,8 +21,14 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthenticationService authenticationService;
+    private final JwtService jwtService;
 
 
+    @GetMapping("/public-key")
+    public ResponseEntity<String> getPublicKey()  {
+        String publicKeyPem = jwtService.getPEMPublicKey();
+        return ResponseEntity.ok(publicKeyPem);
+    }
 
     @PostMapping("/test")
     public ResponseEntity<String> test() {

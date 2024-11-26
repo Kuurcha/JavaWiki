@@ -6,9 +6,11 @@ import com.university.wiki.login.table.User;
 import com.university.wiki.login.table.info.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
 @Service
@@ -48,10 +50,9 @@ public class UserService {
      *
      * @return пользователь
      */
-    public User getByUsername(String username) {
+    public Mono<User> getByUsername(String username) {
         return repository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
-
+                .switchIfEmpty(Mono.error(new UsernameNotFoundException("Пользователь не найден")));
     }
 
     /**
@@ -61,8 +62,9 @@ public class UserService {
      *
      * @return пользователь
      */
-    public UserDetailsService userDetailsService() {
-        return this::getByUsername;
+    public ReactiveUserDetailsService userDetailsService() {
+        return username -> getByUsername(username)
+                .map(user -> (UserDetails) user); // Ensure `User` implements `UserDetails`
     }
 
     /**
