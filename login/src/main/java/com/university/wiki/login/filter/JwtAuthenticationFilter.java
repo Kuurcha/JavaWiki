@@ -34,6 +34,11 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
     }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+        if (request.getRequestURI().equals("/public-key")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
         String token = getTokenFromRequest(request);
         if (token != null && !token.isEmpty() && StringUtils.hasText(token)) {
             String username = jwtService.extractUserName(token);

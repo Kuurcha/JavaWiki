@@ -9,8 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.university.wiki</groupId>
-	<artifactId>eureka-server-discovery</artifactId>
+	<artifactId>wikiproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>eureka-server-discovery</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -20,6 +21,9 @@
 	<developers>
 		<developer/>
 	</developers>
+	<modules>
+		<module>eureka-service-discovery</module>
+	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>

@@ -64,10 +64,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers("/hello").authenticated()
                         .requestMatchers("/error").permitAll()
-                        .requestMatchers("/sign-up", "/sign-in","/swagger-ui/**", "/v3/api-docs/**", "swagger-ui/auth-controller/*", "/test").permitAll()
+                        .requestMatchers("/sign-up", "/public-key", "/sign-in","/swagger-ui/**", "/v3/api-docs/**", "swagger-ui/auth-controller/*", "/test").permitAll()
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(withDefaults());
+
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
