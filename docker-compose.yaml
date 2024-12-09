@@ -1,6 +1,12 @@
 version: '3.8'
 
 services:
+  ad-app:
+    build:
+      context: ./WikiDotNet
+      dockerfile: Dockerfile
+    ports:
+      - "5186:5186"
   service-discovery:
     build:
       context: ./eureka-service-discovery
