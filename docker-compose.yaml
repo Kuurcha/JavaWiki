@@ -9,10 +9,11 @@ services:
       - "5186:5186"
   service-discovery:
     build:
-      context: ./eureka-service-discovery
+      context: ./eurekaDiscovery
       dockerfile: Dockerfile
     ports:
       - "8083:8083"
+      - "5007:5007"
   apigateway:
     build:
       context: ./apigateway

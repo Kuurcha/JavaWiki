@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .addFilterAt(jwtFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .authorizeExchange(auth -> auth
                         .pathMatchers("/hello").authenticated()
-                        .pathMatchers("/error", "/auth/**", "/audit/**", "/swagger-ui/**", "/v3/api-docs/**", "swagger-ui/auth-controller/*", "/test").permitAll()
+                        .pathMatchers("/error", "/auth/**", "/add-ap/**", "/audit/**", "/swagger-ui/**", "/v3/api-docs/**", "swagger-ui/auth-controller/*", "/test").permitAll()
                 )
                 .httpBasic(withDefaults());
         return http.build();

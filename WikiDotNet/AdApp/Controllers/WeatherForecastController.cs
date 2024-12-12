@@ -19,7 +19,7 @@ namespace AdApp.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> Gext()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

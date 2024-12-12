@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "AdApp.Controllers.WeatherForecastController",
-    "Method": "Get",
+    "Method": "Gext",
     "RelativePath": "WeatherForecast",
     "HttpMethod": "GET",
     "IsController": true,

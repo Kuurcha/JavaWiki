@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f9a7c923797232a65f4251205f7db6659934322")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddbff26419c7f500861a5e6b542a3fb495b7d822")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
