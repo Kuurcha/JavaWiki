@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|solutionrelative:adapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|f:\\university\\wikiproject\\wikidotnet\\adapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|solutionrelative:adapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|f:\\university\\wikiproject\\wikidotnet\\adapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|solutionrelative:adapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|f:\\university\\wikiproject\\wikidotnet\\adapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|solutionrelative:adapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|f:\\university\\wikiproject\\wikidotnet\\adapp\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|solutionrelative:adapp\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|f:\\university\\wikiproject\\wikidotnet\\adapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|solutionrelative:adapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CB73F4E2-3FAB-4F9B-93A3-910BF6B62087}|AdApp\\AdApp.csproj|f:\\university\\wikiproject\\wikidotnet\\adapp\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 261,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,7 +86,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "AdApp\\Properties\\launchSettings.json",
+              "ToolTip": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\Properties\\launchSettings.json",
+              "RelativeToolTip": "AdApp\\Properties\\launchSettings.json",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAABkAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-12T20:45:20.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\appsettings.Development.json",
               "RelativeDocumentMoniker": "AdApp\\appsettings.Development.json",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
               "DocumentMoniker": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\appsettings.json",
               "RelativeDocumentMoniker": "AdApp\\appsettings.json",
@@ -108,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AdApp.csproj",
               "DocumentMoniker": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\AdApp.csproj",
               "RelativeDocumentMoniker": "AdApp\\AdApp.csproj",
@@ -120,20 +137,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Dockerfile",
               "DocumentMoniker": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\Dockerfile",
               "RelativeDocumentMoniker": "AdApp\\Dockerfile",
               "ToolTip": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\Dockerfile",
               "RelativeToolTip": "AdApp\\Dockerfile",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAQwBwAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAmwAoAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-12-08T11:22:15.817Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "AdApp\\Controllers\\WeatherForecastController.cs",
@@ -146,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "AdApp\\WeatherForecast.cs",
@@ -164,7 +181,7 @@
               "RelativeDocumentMoniker": "AdApp\\Program.cs",
               "ToolTip": "F:\\University\\wikiproject\\WikiDotNet\\AdApp\\Program.cs",
               "RelativeToolTip": "AdApp\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-08T11:03:10.632Z",
               "EditorCaption": ""

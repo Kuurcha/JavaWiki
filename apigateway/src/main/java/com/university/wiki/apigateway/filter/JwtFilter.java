@@ -7,8 +7,10 @@ import io.jsonwebtoken.MalformedJwtException;
 
 
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.web.filter.OncePerRequestFilter;
 import io.jsonwebtoken.Jwts;
@@ -65,6 +67,24 @@ public class JwtFilter implements WebFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         String token = getTokenFromRequest(exchange);
+        ServerHttpRequest request = exchange.getRequest();
+
+        // Get the original URI
+        String originalURI = request.getURI().toString();
+
+        // Get the method
+        HttpMethod method = request.getMethod();
+
+        // Get the headers
+        String host = request.getHeaders().getFirst("Host");
+        String origin = request.getHeaders().getFirst("Origin");
+
+        // Log or process these values as needed
+        System.out.println("Original URI: " + originalURI);
+        System.out.println("HTTP Method: " + method);
+        System.out.println("Host: " + host);
+        System.out.println("Origin: " + origin);
+
         if (token != null && !token.isEmpty() && StringUtils.hasText(token)) {
             PublicKey publicKey = null;
             try {
