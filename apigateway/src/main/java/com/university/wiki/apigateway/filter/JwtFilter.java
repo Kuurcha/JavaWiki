@@ -66,6 +66,8 @@ public class JwtFilter implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+
+
         String token = getTokenFromRequest(exchange);
         ServerHttpRequest request = exchange.getRequest();
 
@@ -75,6 +77,13 @@ public class JwtFilter implements WebFilter {
         // Get the method
         HttpMethod method = request.getMethod();
 
+        String originalURIPath = request.getURI().getPath();
+
+
+        if (originalURI.equals("/api/auth/public-key")) {
+
+            return chain.filter(exchange);
+        }
         // Get the headers
         String host = request.getHeaders().getFirst("Host");
         String origin = request.getHeaders().getFirst("Origin");

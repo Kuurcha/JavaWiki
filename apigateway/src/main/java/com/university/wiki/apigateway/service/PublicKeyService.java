@@ -19,7 +19,7 @@ import java.util.Base64;
 
 @Service
 public class PublicKeyService {
-    private final String publicKeyEndpoint = "http://localhost:8083/api/auth/public-key";
+    private final String publicKeyEndpoint = "http://localhost:8082/api/auth/public-key";
 
     @Cacheable("publicKeyCache")
     public PublicKey getPublicKey() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, InterruptedException {
@@ -38,6 +38,13 @@ public class PublicKeyService {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() == 401){
             System.out.println("Публичный ключ не был получен из-за 401!");
+            return null;
+        }
+
+        // add generic error message???
+
+        if (response.statusCode() == 404){
+            System.out.println("Публичный ключ не был получен из-за 404! ЧЕГО ПРОИСХОИДТЬ НЕ ДОЛЖННО");
             return null;
         }
 

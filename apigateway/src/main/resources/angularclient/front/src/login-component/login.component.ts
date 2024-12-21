@@ -25,10 +25,10 @@ export class LoginComponent {
   testAuth(){
     this.loginService.testAuth().subscribe({
       next: (response) => {
-        alert('Auth test success: ' + response);
+        console.log("OK! " + response)
       },
       error: (error) => {
-        alert('Auth test failed: ' + JSON.stringify(error));
+        console.log('Auth test failed: ' + JSON.stringify(error));
       },
     });
   }
@@ -48,6 +48,7 @@ export class LoginComponent {
           document.cookie = `authToken=${token}; expires=${expiryDate.toUTCString()}; path=/`;
           // добавить редирект
         },
+        
         error: (err) => {
           console.error('Error occurred:', err);
   

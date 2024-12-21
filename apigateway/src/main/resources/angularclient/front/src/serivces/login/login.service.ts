@@ -13,7 +13,6 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
 
-
   signIn(username: string, password: string): Observable<any> {
 
     const body = {
@@ -27,7 +26,8 @@ export class LoginService {
   test(): Observable<any> {
     return this.http.get<any>(`${this.baseTestUrl}`);
   }
-  private baseAutTesthUrl: string = "http://localhost:8082/auth/hello"
+
+  private baseAutTesthUrl: string = "http://localhost:4201/api/auth/hello"
   testAuth(): Observable<any> {
     return this.http.get<any>(`${this.baseAutTesthUrl}`);
   }
