@@ -4,6 +4,7 @@ import { LoginService } from '../serivces/login/login.service';
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { routes } from './app.routes'
+import { appConfig } from './app.config';
 
 
 
@@ -32,6 +33,3 @@ export class AppComponent {
   // } 
 }
 
-bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)],
-}).catch((err) => console.error(err));

@@ -19,7 +19,7 @@ import java.util.Base64;
 
 @Service
 public class PublicKeyService {
-    private final String publicKeyEndpoint = "http://login:8080/public-key";
+    private final String publicKeyEndpoint = "http://localhost:8083/api/auth/public-key";
 
     @Cacheable("publicKeyCache")
     public PublicKey getPublicKey() throws IOException, NoSuchAlgorithmException, InvalidKeySpecException, InterruptedException {

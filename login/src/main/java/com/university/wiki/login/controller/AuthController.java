@@ -29,13 +29,10 @@ public class AuthController {
         return ResponseEntity.ok(publicKeyPem);
     }
 
-    @PostMapping("/test")
-    public ResponseEntity<String> test() {
-        return ResponseEntity.ok("Test successful!");
-    }
 
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     String home() {
+
         return "Hello World!";
     }
 
