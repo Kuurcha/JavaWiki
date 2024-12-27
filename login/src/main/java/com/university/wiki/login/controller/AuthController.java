@@ -15,6 +15,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -31,9 +34,10 @@ public class AuthController {
 
 
     @GetMapping("/hello")
-    String home() {
-
-        return "Hello World!";
+    public Map<String, String> home() {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Hello World!");
+        return response;
     }
 
     @Operation(summary = "Регистрация пользователя")

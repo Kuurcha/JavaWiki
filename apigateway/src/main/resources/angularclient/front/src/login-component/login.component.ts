@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../serivces/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
@@ -17,7 +18,7 @@ export class LoginComponent {
   })
 
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
 
   }
 
@@ -25,7 +26,7 @@ export class LoginComponent {
   testAuth(){
     this.loginService.testAuth().subscribe({
       next: (response) => {
-        console.log("OK! " + response)
+        console.log("OK! " + response.message)
       },
       error: (error) => {
         console.log('Auth test failed: ' + JSON.stringify(error));
@@ -38,15 +39,17 @@ export class LoginComponent {
       let username = this.loginForm.controls.username.value ?? "";
       let password = this.loginForm.controls.password.value ?? "";
 
-      let token = "not a token";
 
       this.loginService.signIn(username, password).subscribe({
-        next: (res) => {
+        next: (res) => {  
           let token = res.token;
           const expiryDate = new Date();
           expiryDate.setHours(expiryDate.getHours() + 6);  
           document.cookie = `authToken=${token}; expires=${expiryDate.toUTCString()}; path=/`;
-          // добавить редирект
+          alert('Успешная авторизация!');
+          // this.router.navigate(['/']).then(() => {
+          //   alert('Успешная авторизация!');
+          // });
         },
         
         error: (err) => {

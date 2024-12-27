@@ -1,1 +1,22 @@
-<p>register works!</p>
+<div class="d-flex justify-content-center p-2">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-40 border border-primary p-2">
+      <div class="form-group p-2">
+        <label for="exampleInputUsername1">Login</label>
+        <input formControlName="username" type="text" class="form-control" aria-describedby="usernameHelp" placeholder="Enter your username">
+      </div>
+      <div class="form-group p-2">
+        <label for="exampleInputUsername1">Email</label>
+        <input formControlName="email" type="text" class="form-control" aria-describedby="usernameEmail" placeholder="Enter your email">
+      </div>
+      <div class="form-group p-2">
+        <label for="exampleInputPassword1">Password</label>
+        <input formControlName="password" type="password" class="form-control" placeholder="Enter password">
+      </div>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger p-2">
+        Password must be at least 6 characters long.
+      </div>
+      <button type="submit" class="btn btn-primary align-left-custom" [disabled]="loginForm.invalid">Submit</button>
+    </form>
+  
+  </div>
+  

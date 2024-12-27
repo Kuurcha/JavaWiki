@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
 
-  private baseUrl: string = "http://localhost:4201/api/auth/sign-in";
-
+  private signInUrl: string = "http://localhost:4201/api/auth/sign-in";
+  private signUpUrl: string = "http://localhost:4201/api/auth/sign-up";
   constructor(private http: HttpClient) {}
 
 
@@ -19,7 +19,18 @@ export class LoginService {
       username: username,
       password: password
     };
-    return this.http.post<any>(this.baseUrl, body);
+    return this.http.post<any>(this.signInUrl, body);
+  }
+
+  
+  signUp(username: string, email: string, password: string): Observable<any> {
+
+    const body = {
+      username: username,
+      password: password,
+      email: email
+    };
+    return this.http.post<any>(this.signUpUrl, body);
   }
   private baseTestUrl: string = "http://localhost:4201/api/auth/test";
 

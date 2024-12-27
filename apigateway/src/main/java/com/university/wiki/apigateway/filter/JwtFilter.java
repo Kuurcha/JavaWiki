@@ -80,7 +80,7 @@ public class JwtFilter implements WebFilter {
         String originalURIPath = request.getURI().getPath();
 
 
-        if (originalURI.equals("/api/auth/public-key")) {
+        if (originalURIPath.equals("/api/auth/public-key")) {
 
             return chain.filter(exchange);
         }
@@ -96,7 +96,7 @@ public class JwtFilter implements WebFilter {
 
         if (token != null && !token.isEmpty() && StringUtils.hasText(token)) {
             PublicKey publicKey = null;
-            try {
+
                 publicKey = publicKeyService.getPublicKey();
                 if (publicKey == null) {
                     return unauthorizedError(exchange,"Public key is missing.");
@@ -112,9 +112,7 @@ public class JwtFilter implements WebFilter {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-            } catch (IOException | InterruptedException | NoSuchAlgorithmException | InvalidKeySpecException e) {
-                throw new RuntimeException(e);
-            }
+
         }
         return chain.filter(exchange);
     }
