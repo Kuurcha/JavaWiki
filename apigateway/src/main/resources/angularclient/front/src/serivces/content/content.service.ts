@@ -18,63 +18,41 @@ export class ContentService {
     return this.http.post(`${this.apiUrl}`, contentRequest);
   }
 
-  /**
-   * Fetch a WikiRecord by its ID.
-   * @param id - The ID of the WikiRecord.
+    /**
+   * Fetch a single WikiRecord by its ID.
+   * @param id - The ID of the record to fetch.
    */
-  getRecordById(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${id}`);
-  }
+    getRecordById(id: string): Observable<any> {
+      return this.http.get(`${this.apiUrl}/${id}`);
+    }
 
   /**
-   * Fetch a paginated list of WikiRecords.
-   * @param page - The page number.
-   * @param size - The number of records per page.
+   * Fetch a paginated list of WikiRecords with optional filters.
+   * @param filters - An object containing optional filters: content, author, tags.
+   * @param page - The page number (default is 0).
+   * @param size - The number of records per page (default is 10).
    */
-  getRecords(page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams().set('page', page).set('size', size);
+  getRecords(filters: { content?: string; author?: string; tags?: string[] } = {}, page: number = 0, size: number = 10): Observable<any> {
+    let params = new HttpParams().set('page', page).set('size', size);
+
+    if (filters.content) params = params.set('content', filters.content);
+    if (filters.author) params = params.set('author', filters.author);
+    if (filters.tags && filters.tags.length > 0) params = params.set('tags', filters.tags.join(','));
+
     return this.http.get(`${this.apiUrl}`, { params });
   }
 
   /**
-   * Search WikiRecords by content.
-   * @param content - The content to search for.
-   * @param page - The page number.
-   * @param size - The number of records per page.
+   * Get the total count of WikiRecords matching optional filters.
+   * @param filters - An object containing optional filters: content, author, tags.
    */
-  searchByContent(content: string, page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('content', content)
-      .set('page', page)
-      .set('size', size);
-    return this.http.get(`${this.apiUrl}/search/content`, { params });
-  }
+  getRecordCount(filters: { content?: string; author?: string; tags?: string[] } = {}): Observable<number> {
+    let params = new HttpParams();
 
-  /**
-   * Search WikiRecords by author.
-   * @param author - The author to search for.
-   * @param page - The page number.
-   * @param size - The number of records per page.
-   */
-  searchByAuthor(author: string, page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('author', author)
-      .set('page', page)
-      .set('size', size);
-    return this.http.get(`${this.apiUrl}/search/author`, { params });
-  }
+    if (filters.content) params = params.set('content', filters.content);
+    if (filters.author) params = params.set('author', filters.author);
+    if (filters.tags && filters.tags.length > 0) params = params.set('tags', filters.tags.join(','));
 
-  /**
-   * Search WikiRecords by tags.
-   * @param tags - The tags to search for.
-   * @param page - The page number.
-   * @param size - The number of records per page.
-   */
-  searchByTags(tags: string[], page: number = 0, size: number = 10): Observable<any> {
-    const params = new HttpParams()
-      .set('tags', tags.join(','))
-      .set('page', page)
-      .set('size', size);
-    return this.http.get(`${this.apiUrl}/search/tags`, { params });
+    return this.http.get<number>(`${this.apiUrl}/count`, { params });
   }
 }

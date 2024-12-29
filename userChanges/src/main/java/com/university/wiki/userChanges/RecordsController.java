@@ -3,6 +3,7 @@ package com.university.wiki.userChanges;
 import com.university.wiki.userChanges.dto.RecordRequest;
 import com.university.wiki.userChanges.entity.Tag;
 import com.university.wiki.userChanges.entity.WikiRecord;
+import com.university.wiki.userChanges.service.RecordRepositoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +24,9 @@ public class RecordsController {
             wikiRecordRepository;
 
     @Autowired
+    private RecordRepositoryService wikiRecordService;
+
+    @Autowired
     private TagService tagService;
 
     @PostMapping
@@ -30,7 +34,7 @@ public class RecordsController {
         WikiRecord wikiRecord = new WikiRecord();
         wikiRecord.setContent(contentRequest.getContent());
         wikiRecord.setAuthor(contentRequest.getAuthor());
-        wikiRecord.setHeader(contentRequest.getAuthor());
+        wikiRecord.setHeader(contentRequest.getHeader());
         wikiRecord.setDate(LocalDateTime.now());
 
         Set<Tag> tags = tagService.convertToTags(contentRequest.getTags());
@@ -45,44 +49,44 @@ public class RecordsController {
                 .orElseThrow(() -> new RuntimeException("Record not found with ID: " + id));
     }
 
+    /**
+     * Get filtered WikiRecords with pagination.
+     *
+     * @param content - The content to filter by (optional).
+     * @param author - The author to filter by (optional).
+     * @param tags - The set of tags to filter by (optional).
+     * @param page - The page number (default is 0).
+     * @param size - The number of records per page (default is 10).
+     * @return A page of filtered WikiRecords.
+     */
     @GetMapping
     public Page<WikiRecord> getRecords(
+            @RequestParam(required = false) String content,
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) Set<String> tags,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        Pageable pageable = PageRequest.of(page, size);
-        return wikiRecordRepository.findAll(pageable);
+        return wikiRecordService.getRecords(content, author, tags, page, size);
     }
 
-    @GetMapping("/search/content")
-    public Page<WikiRecord> searchByContent(
-            @RequestParam String content,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+    /**
+     * Get the count of WikiRecords based on filters.
+     *
+     * @param content - The content to filter by (optional).
+     * @param author - The author to filter by (optional).
+     * @param tags - The set of tags to filter by (optional).
+     * @return The total count of filtered WikiRecords.
+     */
+    @GetMapping("/count")
+    public long countRecords(
+            @RequestParam(required = false) String content,
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) Set<String> tags
     ) {
-        Pageable pageable = PageRequest.of(page, size);
-        return wikiRecordRepository.findByContentContainingIgnoreCase(content, pageable);
+        return wikiRecordService.countRecords(content, author, tags);
     }
 
 
-    @GetMapping("/search/author")
-    public Page<WikiRecord> searchByAuthor(
-            @RequestParam String author,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
-        Pageable pageable = PageRequest.of(page, size);
-        return wikiRecordRepository.findByAuthorContainingIgnoreCase(author, pageable);
-    }
-
-    @GetMapping("/search/tags")
-    public Page<WikiRecord> searchByTags(
-            @RequestParam Set<String> tags,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
-        Pageable pageable = PageRequest.of(page, size);
-        return wikiRecordRepository.findByTagsNameIn(tags, pageable);
-    }
 
 }

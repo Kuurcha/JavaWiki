@@ -18,9 +18,27 @@
       <button type="button" class="btn btn-dark m-3" (click)="sendContent()" [disabled]="!editorForm.valid"> Submit </button>
 </form>
 
-<div class="m-3">
+
+<app-record-viewer
+    [header]="getHeader()" 
+    [htmlContent]="getContent()"
+    [authorName]="getAuthorName()" 
+    [tags]="parsedDisplayTags" 
+    [date]="getDate()"
+    [showPreview]="showPreview"
+    >
+</app-record-viewer>
+<!-- <div class="m-3">
     <h5 class = "m-3">Preview</h5>
     <h2>{{ editorForm.value.header }}</h2>
+    <div class="m-3 preview-container" *ngIf="showPreview" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <span>{{ currentDate | date:'short' }}</span>
+        </div>
+        <div>
+            <span>Написал: {{ getAuthorName() }}</span>
+        </div>
+    </div>
     <div class="m-3 preview-container" *ngIf="showPreview">
 
         <div [innerHTML]="editorForm.value.html"></div>
@@ -31,10 +49,6 @@
             <span class="tag-item">  #{{ tag }}</span>
         </ng-container>
     </span>
-</div>
+</div> -->
 
 
-<!-- <div><strong>Tags:</strong>
-  <ul>
-    <li *ngFor="let tag of parsedTags">{{ tag }}</li>
-</ul> -->

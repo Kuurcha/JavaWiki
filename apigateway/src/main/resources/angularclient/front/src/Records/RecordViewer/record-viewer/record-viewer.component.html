@@ -1,0 +1,30 @@
+<div class="m-3">
+    <h5 class="m-3" *ngif="showPreview">Preview</h5>
+    
+    <h2
+        [ngClass]="{'clickable': showPreview}" 
+        (click)="showPreview ? goToSinglePage(id) : null"
+        style="cursor: pointer; text-decoration: underline; display: inline-block;">
+        {{ header }}
+    </h2>
+    
+
+    <div class="m-3 preview-container" *ngIf="showPreview" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <span>{{ date | date:'short' }}</span>
+        </div>
+        <div>
+            <span>Написал: {{ authorName }}</span>
+        </div>
+    </div>
+
+    <div class="m-3 preview-container">
+        <div [innerHTML]="truncated ? truncatedContent : htmlContent"></div>
+    </div>
+
+    <span class="m-3">
+        <ng-container *ngFor="let tag of tags">
+            <span class="tag-item">  #{{ tag.name }}</span>
+        </ng-container>
+    </span>
+</div>

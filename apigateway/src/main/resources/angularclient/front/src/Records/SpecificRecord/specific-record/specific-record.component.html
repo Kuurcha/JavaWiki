@@ -1,0 +1,9 @@
+<app-record-viewer
+  *ngIf="record"  
+  [id]="record.id"
+  [header]="record.header"
+  [htmlContent]="record.content"
+  [authorName]="record.author"
+  [tags]="record.tags"
+  [truncated]="false">
+</app-record-viewer>

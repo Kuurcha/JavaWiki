@@ -4,18 +4,13 @@ import com.university.wiki.userChanges.entity.WikiRecord;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.Set;
 
-public interface WikiRecordRepository extends JpaRepository<WikiRecord, Long> {
-
-    Page<WikiRecord> findByContentContainingIgnoreCase(String content, Pageable pageable);
+public interface WikiRecordRepository extends JpaRepository<WikiRecord, Long>, JpaSpecificationExecutor<WikiRecord> {
 
 
-    Page<WikiRecord> findByAuthorContainingIgnoreCase(String author, Pageable pageable);
-
-
-    Page<WikiRecord> findByTagsNameIn(Set<String> tagNames, Pageable pageable);
-
+    long count();
 
 }

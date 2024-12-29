@@ -4,11 +4,18 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule }
 import { Editor, NgxEditorModule, Toolbar, Validators } from 'ngx-editor';
 import { ContentService } from '../../serivces/content/content.service';
 import { AuthService } from '../../serivces/auth/auth.service';
+import { RecordViewerComponent } from "../RecordViewer/record-viewer/record-viewer.component";
+
+
+interface Tag {
+  id: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-editor',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgxEditorModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgxEditorModule, FormsModule, RecordViewerComponent],
   templateUrl: './editor.component.html',
   styleUrl: './editor.component.scss'
 })
@@ -55,8 +62,42 @@ export class EditorComponent implements OnDestroy {
     return tags.slice(0, 5);
   }
 
+  get parsedDisplayTags(): Tag[] {
+    if (this.editorForm.controls.tagsInput.value == null)
+      return [];
+  
+
+    let tags = this.editorForm.controls.tagsInput.value.split(/\s+/)
+      .map(tag => tag.trim())  
+      .filter(tag => tag);
+  
+
+    return tags.slice(0, 5).map((tag, index) => ({
+      id: `${index + 1}`,  
+      name: tag
+    }));
+  }
   togglePreview(): void {
     this.showPreview = !this.showPreview; 
+  }
+
+  get currentDate(): Date {
+    return new Date();
+  }
+
+
+  getDate(){
+    return new Date();
+  }
+  
+  getContent(){
+    return this.editorForm.value.html ?? "";
+  }
+  getHeader(){
+    return this.editorForm.value.header ?? "";
+  }
+  getAuthorName(){
+    return this.authService.getUsername() ?? "Mysterous Anonymous";
   }
 
   sendContent(): void {
