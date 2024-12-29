@@ -40,6 +40,8 @@ export class RegisterComponent {
             alert('Успешная регистрация!');
           });
 
+          localStorage.setItem('username', username);
+
         },
         
         error: (err) => {

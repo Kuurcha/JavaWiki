@@ -10,4 +10,6 @@ import lombok.*;
 public class AuthResponseDTO   {
     @Schema(description = "Токен доступа", example = "eyJhbGciOiJIUzI1NiJ9.eyJSb2x...")
     String token;
+
+    String login;
 }

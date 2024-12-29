@@ -1,0 +1,40 @@
+<form [formGroup]="editorForm" class="m-3">
+    <div class="m-3">
+        <label for="header">Header</label>
+        <input id="header" formControlName="header" placeholder="Enter a header" class="form-control"/>
+    </div>
+    
+    <div class="m-3 NgxEditor__Wrapper">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+        <ngx-editor [editor]="editor" formControlName="html" [placeholder]="'Type here...'"></ngx-editor>
+    </div>
+
+
+    <div class="m-3 form-group">
+        <label for="tagsInput">Теги (Разделяются пробелом, максимум 5)</label>
+        <input id="tagsInput" formControlName="tagsInput" class="form-control" placeholder="Enter tags" />
+      </div>
+
+      <button type="button" class="btn btn-dark m-3" (click)="sendContent()" [disabled]="!editorForm.valid"> Submit </button>
+</form>
+
+<div class="m-3">
+    <h5 class = "m-3">Preview</h5>
+    <h2>{{ editorForm.value.header }}</h2>
+    <div class="m-3 preview-container" *ngIf="showPreview">
+
+        <div [innerHTML]="editorForm.value.html"></div>
+    </div>
+
+    <span class="m-3">
+        <ng-container *ngFor="let tag of parsedTags">
+            <span class="tag-item">  #{{ tag }}</span>
+        </ng-container>
+    </span>
+</div>
+
+
+<!-- <div><strong>Tags:</strong>
+  <ul>
+    <li *ngFor="let tag of parsedTags">{{ tag }}</li>
+</ul> -->

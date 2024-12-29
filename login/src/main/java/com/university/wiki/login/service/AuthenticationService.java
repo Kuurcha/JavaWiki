@@ -43,7 +43,7 @@ public class AuthenticationService {
         var jwt = jwtService.generateToken(user);
 
 
-        return new AuthResponseDTO(jwt);
+        return new AuthResponseDTO(jwt, request.getUsername());
     }
 
     /**
@@ -64,7 +64,7 @@ public class AuthenticationService {
                     .loadUserByUsername(request.getUsername());
 
             var jwt = jwtService.generateToken(user);
-            return new AuthResponseDTO(jwt);
+            return new AuthResponseDTO(jwt, request.getUsername());
 
     }
         catch (UsernameNotFoundException e) {

@@ -5,19 +5,36 @@ import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { routes } from './app.routes'
 import { appConfig } from './app.config';
-
-
+import { AuthService } from '../serivces/auth/auth.service';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule],
+  imports: [RouterOutlet, CommonModule, MatIconModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'front';
+  constructor(private authService: AuthService ) {
 
+  }
+
+
+  getUsername(): string | null{
+    var result =this.authService.getUsername(); 
+    return result;
+  }
+
+  isAuthenticated(){
+    let isAuthenticated = this.authService.isAuthenticated();
+    return isAuthenticated;
+  }
+
+  logOut(){
+    this.authService.logout();
+  }
 
   
   // constructor(private loginService: LoginService){

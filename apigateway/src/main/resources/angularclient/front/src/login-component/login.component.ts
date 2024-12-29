@@ -43,13 +43,15 @@ export class LoginComponent {
       this.loginService.signIn(username, password).subscribe({
         next: (res) => {  
           let token = res.token;
+
           const expiryDate = new Date();
           expiryDate.setHours(expiryDate.getHours() + 6);  
           document.cookie = `authToken=${token}; expires=${expiryDate.toUTCString()}; path=/`;
-          alert('Успешная авторизация!');
-          // this.router.navigate(['/']).then(() => {
-          //   alert('Успешная авторизация!');
-          // });
+
+          localStorage.setItem('username', username);
+          this.router.navigate(['/']).then(() => {
+            alert('Успешная авторизация!');
+          });
         },
         
         error: (err) => {
