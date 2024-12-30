@@ -7,11 +7,12 @@ import { routes } from './app.routes'
 import { appConfig } from './app.config';
 import { AuthService } from '../serivces/auth/auth.service';
 import {MatIconModule} from '@angular/material/icon';
+import { AdComponent } from "../ad/ad/ad.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, MatIconModule],
+  imports: [RouterOutlet, CommonModule, MatIconModule, AdComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

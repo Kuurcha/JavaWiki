@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Ad } from '../../Interface/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class ContentService {
    * @param id - The ID of the record to fetch.
    */
     getRecordById(id: string): Observable<any> {
-      return this.http.get(`${this.apiUrl}/${id}`);
+      return this.http.get(`${this.apiUrl}${id}`);
     }
 
   /**
@@ -53,6 +54,13 @@ export class ContentService {
     if (filters.author) params = params.set('author', filters.author);
     if (filters.tags && filters.tags.length > 0) params = params.set('tags', filters.tags.join(','));
 
-    return this.http.get<number>(`${this.apiUrl}/count`, { params });
+    return this.http.get<number>(`${this.apiUrl}count`, { params });
   }
+
+    /**
+   * Get a random ad.
+   */
+    getRandomAd(): Observable<Ad> {
+      return this.http.get<Ad>(`${this.apiUrl}random-ad`);
+    }
 }
