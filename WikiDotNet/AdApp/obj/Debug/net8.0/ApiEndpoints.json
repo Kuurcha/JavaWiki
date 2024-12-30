@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "AdApp.Controllers.YourNamespace.Controllers.AdsController",
+    "Method": "SendAdAsync",
+    "RelativePath": "Ads/send-ad",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "adContent",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "AdApp.Controllers.WeatherForecastController",
     "Method": "Gext",
     "RelativePath": "WeatherForecast",

@@ -5,6 +5,27 @@
     "version": "1.0"
   },
   "paths": {
+    "/Ads/send-ad": {
+      "post": {
+        "tags": [
+          "Ads"
+        ],
+        "parameters": [
+          {
+            "name": "adContent",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [

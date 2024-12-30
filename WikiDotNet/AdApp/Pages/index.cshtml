@@ -1,0 +1,48 @@
+﻿@page
+@model AdApp.indexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2>Send an Ad to RabbitMQ</h2>
+
+<!-- Removed <form> since it's not necessary for AJAX -->
+<label for="adContent">Ad Content:</label>
+<input type="text" id="adContent" name="adContent" required />
+<button id="sendAdBtn">Send Ad</button>
+
+<div id="responseMessage"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Add AJAX Script -->
+<script>
+    $(document).ready(function () {
+        // Handle button click event
+        $('#sendAdBtn').click(function () {
+            const adContent = $('#adContent').val();  // Get the input value
+
+            if (adContent) {
+                const apiUrl = `/Ads/send-ad?adContent=${encodeURIComponent(adContent)}`;  // Construct the API URL
+
+                // Send AJAX request
+                $.ajax({
+                    url: apiUrl,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        // Display the server's response message
+                        $('#responseMessage').text(data.message);
+                        $('#adContent').val('');  // Clear the input field
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        $('#responseMessage').text('Error sending ad. Please try again.');
+                    }
+                });
+            } else {
+                $('#responseMessage').text('Please enter some ad content.');
+            }
+        });
+    });
+</script>
